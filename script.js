@@ -687,10 +687,8 @@ app.loader
         })
         balanceTitle.x = 45
         balanceTitle.y = 5
-        fetch('http://localhost:350/user_terminal_info')
-        .then(response => response.json())
-        .then(data => {
-            const balanceValue = new PIXI.Text(data[0].balance, {
+        
+            const balanceValue = new PIXI.Text('1000', {
                 fontFamily: '"Ubuntu", sans-serif',
                 fontSize: Math.round(app.screen.width*0.015625),
                 fontWeight: '700',
@@ -699,7 +697,6 @@ app.loader
             balanceValue.x = 40
             balanceValue.y = 30
             balanceContainer.addChild(balanceTitle,balanceValue)
-        });
         const choiceBtnText= new PIXI.Text('выбор игр', leftBtnTextStyle)
         choiceBtnText.x = choiceBtnSprite.width/2 - 22
         choiceBtnText.y = choiceBtnSprite.height/3
@@ -9106,19 +9103,6 @@ app.stage.addChild(holdLineContainer)
         console.log(winstok)
         jackpotContainer.children[3].text = parseInt(jackpotContainer.children[3].text ) + parseInt(betStateInfoContainer.children[3]._text)
         jackpotContainer.children[4].text = parseInt(jackpotContainer.children[4].text ) + Math.floor((winstok * spincount) / parseInt(betStateInfoContainer.children[3]._text))
-        url='http://localhost:350/user_terminal_update'
-       const  value = {
-            lost:  jackpotContainer.children[3].text ,
-            win:  jackpotContainer.children[4].text,
-            balance:balanceContainer.children[2].text
-        }
-        fetch(url, {
-            method:'POST',
-            body: JSON.stringify(value), // data can be `string` or {object}!
-            headers:{
-              'Content-Type': 'application/json'
-            }
-        })
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------//
         hold1BtnContainer.interactive = true
         hold2BtnContainer.interactive = true
